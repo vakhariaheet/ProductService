@@ -1,16 +1,18 @@
 package in.heetvakharia.productservice;
 
-import in.heetvakharia.productservice.model.Product;
-import org.springframework.boot.SpringApplication;
+import in.heetvakharia.productservice.services.ProductService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ProductServiceApplication {
 
     public static void main(String[] args) {
-        Product product1 = new Product(1,"Laptop",45000);
-        System.out.println("Product Name: "+product1.getName());
-        SpringApplication.run(ProductServiceApplication.class, args);
+        ProductService productService = new ProductService();
+        System.out.println("All Products: ");
+        productService.getProductNames().forEach(System.out::println);
+        System.out.println("Products Above 80000: ");
+        productService.getProductsAbovePrice(80000).forEach(p -> System.out.println(p.getName()));
+        productService.getProductDetail(4).ifPresent(p -> System.out.println("Product with Id 4: "+ p.getName()));
     }
 
 }
