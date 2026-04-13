@@ -1,11 +1,10 @@
-package in.heetvakharia.productservice.services;
+package in.heetvakharia.productservice.service;
 
 import in.heetvakharia.productservice.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -20,16 +19,8 @@ public class ProductService {
 
     }
 
-    public List<Product> getProductsAbovePrice(double price) {
-        return productList.stream().filter(p -> p.getPrice() > price).toList();
-    }
-
-    public List<String> getProductNames() {
-        return productList.stream().map(Product::getName).toList();
-    }
-
-    public Optional<Product> getProductDetail(long id){
-        return productList.stream().filter( p -> p.getId() == id).findFirst();
-    }
+   public List<Product> getAllProduct() {
+        return productList;
+   }
 
 }
